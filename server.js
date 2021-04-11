@@ -8,7 +8,7 @@ import cors from 'cors';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
 
-import users from './routes/users';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use('/users', users);
+app.use('/users', userRouter);
 
 app.use(notFound);
 app.use(errorHandler);
