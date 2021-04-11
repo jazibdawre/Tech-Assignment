@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
+import sendMail from '../utils/sendMail.js';
 import User from '../models/userModel.js';
 
 // Auth user & get token
@@ -36,6 +37,8 @@ const registerUser = asyncHandler(async (req, res) => {
 		res.status(400);
 		throw new Error('User already exists');
 	}
+
+	sendMail(name, email);
 
 	const user = await User.create({
 		name,
